@@ -1,12 +1,16 @@
-# Define the expected first 8 letters of the computer name
-$expectedPrefix = "KARTHIKM"
+# Define the allowed prefixes or computer names (first 8 characters)
+$allowedNames = @("Scas-351-", "KARTHIKMUR")
 
 # Get the current computer name
 $currentComputerName = $env:COMPUTERNAME
 
-# Compare the first 8 characters of the current computer name
-if ($currentComputerName.Substring(0, 8) -eq $expectedPrefix) {
-    Write-Host "First 8 letters of computer name match. Running script..."
+# Display the allowed names
+Write-Host "Allowed computer names or prefixes:"
+$allowedNames | ForEach-Object { Write-Host "- $_" }
+
+# Check if the first 8 characters of the current computer name match any of the allowed names
+if ($allowedNames -contains $currentComputerName.Substring(0, 8)) {
+    Write-Host "`nComputer name matches one of the allowed names. Running script..."
     
     # Stop the Explorer process
     Stop-Process -Name explorer -Force
@@ -16,6 +20,6 @@ if ($currentComputerName.Substring(0, 8) -eq $expectedPrefix) {
     
     Write-Host "Script completed."
 } else {
-    Write-Host "First 8 letters of computer name do not match. Exiting..."
+    Write-Host "`nComputer name does not match any allowed names. Exiting..."
     exit
 }
