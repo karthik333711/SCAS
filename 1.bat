@@ -2,7 +2,7 @@
 setlocal enabledelayedexpansion
 
 :: Define allowed prefix
-set "allowedName=scas-360"
+set "allowedName=scas-351"
 
 :: Get the current computer name
 for /f "tokens=*" %%a in ('hostname') do set "currentComputerName=%%a"
