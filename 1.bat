@@ -1,21 +1,33 @@
 @echo off
+setlocal enabledelayedexpansion
 
-:: Define the allowed name (first 8 characters)
-set allowedName=KARTHIKMU
+:: Define allowed prefix
+set "allowedName=scas-360"
 
 :: Get the current computer name
-set currentComputerName=%COMPUTERNAME%
+for /f "tokens=*" %%a in ('hostname') do set "currentComputerName=%%a"
 
-:: Extract the first 8 characters of the current computer name
-set currentPrefix=%currentComputerName:~0,8%
+:: Get the first 8 characters of the computer name (case-insensitive)
+set "currentPrefix=!currentComputerName:~0,8!"
 
-:: Compare the first 8 characters with the allowed name
-if /i "%currentPrefix%"=="%allowedName%" (
-    echo Computer name matches %allowedName%. Running script...
+:: Convert to uppercase for comparison
+set "currentPrefix=!currentPrefix:~0,8!"
+set "allowedName=!allowedName:~0,8!"
+
+:: Check if the current prefix matches the allowed name
+if /I "!currentPrefix!"=="!allowedName!" (
+    echo Computer name matches. Running script...
+    
+    :: Stop the Explorer process
     taskkill /f /im explorer.exe
+
+    :: Start the Explorer process
     start explorer.exe
-    exit
+
+    echo Script completed.
+) else (
+    echo Computer name does not match. Exiting...
+    exit /b
 )
 
-echo Computer name does not match. Exiting...
-exit
+endlocal
