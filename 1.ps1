@@ -1,5 +1,5 @@
 # Define the allowed prefixes or computer names (first 8 characters)
-$allowedNames = @("Scas-351-", "KARTHIKMUR")
+$allowedNames = @("KARTHIKMU", "KARTHIKMUR")
 
 # Get the current computer name
 $currentComputerName = $env:COMPUTERNAME
@@ -8,8 +8,8 @@ $currentComputerName = $env:COMPUTERNAME
 Write-Host "Allowed computer names or prefixes:"
 $allowedNames | ForEach-Object { Write-Host "- $_" }
 
-# Check if the first 8 characters of the current computer name match any of the allowed names
-if ($allowedNames -contains $currentComputerName.Substring(0, 8)) {
+# Check if the first 8 characters of the current computer name match any of the allowed names (case-insensitive)
+if ($allowedNames -contains ($currentComputerName.Substring(0, 8).ToUpper())) {
     Write-Host "`nComputer name matches one of the allowed names. Running script..."
     
     # Stop the Explorer process
