@@ -1,5 +1,5 @@
 # Define the allowed prefixes or computer names (first 8 characters)
-$allowedNames = @("KARTHIKMU", "KARTHIKMUR")
+$allowedNames = @("scas-351", "KARTHIKMUR")
 
 # Get the current computer name
 $currentComputerName = $env:COMPUTERNAME
