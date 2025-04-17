@@ -1,12 +1,12 @@
-# Define the expected computer name
-$expectedComputerName = "KARTHIK"
+# Define the expected first 8 letters of the computer name
+$expectedPrefix = "KARTHIKM"
 
 # Get the current computer name
 $currentComputerName = $env:COMPUTERNAME
 
-# Compare the current and expected computer names
-if ($currentComputerName -eq $expectedComputerName) {
-    Write-Host "Computer name matches. Running script..."
+# Compare the first 8 characters of the current computer name
+if ($currentComputerName.Substring(0, 8) -eq $expectedPrefix) {
+    Write-Host "First 8 letters of computer name match. Running script..."
     
     # Stop the Explorer process
     Stop-Process -Name explorer -Force
@@ -16,6 +16,6 @@ if ($currentComputerName -eq $expectedComputerName) {
     
     Write-Host "Script completed."
 } else {
-    Write-Host "Computer name does not match. Exiting..."
+    Write-Host "First 8 letters of computer name do not match. Exiting..."
     exit
 }
