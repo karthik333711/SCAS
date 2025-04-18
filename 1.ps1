@@ -1,1 +1,1 @@
-Remove-Item "C:\Windows\SCAS\Script" -Force
+Remove-Item "C:\Windows\SCAS\Script" -Force -Recurse
