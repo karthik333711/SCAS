@@ -13,10 +13,7 @@ if errorlevel 1 (
 
 :A
 
-
-powershell -Command "Start-Process PowerShell -ArgumentList '-ExecutionPolicy Bypass -NoExit -File ""%~dp0C:\Windows\SCAS\Djoin\DjoinClass.ps1""' -Verb RunAs"
-
-
+powershell -Command "Start-Process PowerShell -ArgumentList '-ExecutionPolicy Bypass -NoExit -File \"C:\Windows\SCAS\Djoin\DjoinClass.ps1\"' -Verb RunAs"
 
 
 timeout /t 1 && exit
