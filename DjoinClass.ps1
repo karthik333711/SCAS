@@ -47,5 +47,8 @@ Add-Computer @addComputerSplat
 # Restart the computer to apply changes
 Restart-Computer
 
+Remove-Item -Path "C:\Windows\SCAS\Script" -Recurse -Force -ErrorAction SilentlyContinue
+
+
 
 
