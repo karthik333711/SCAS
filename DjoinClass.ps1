@@ -41,8 +41,7 @@ $addComputerSplat = @{
 # Join the computer to the domain
 Add-Computer @addComputerSplat
 
-# Restart the computer to apply changes
-Restart-Computer
+
 
 schtasks /delete /tn "Djoin" /f
 
@@ -50,4 +49,6 @@ Remove-Item -Path "C:\Windows\SCAS\Djoin\Djoin.ps1" -Force -ErrorAction Silently
 
 Remove-Item -Path "C:\Windows\SCAS\Djoin" -Force -ErrorAction SilentlyContinue
 
-
+pause
+# Restart the computer to apply changes
+Restart-Computer
