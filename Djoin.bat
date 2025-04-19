@@ -1,23 +1,17 @@
 @echo off
 :loop
-ping DC01.lab.COM  -n 1 | find "TTL=" > nul
+ping DC01.lab.com -n 1 | find "TTL=" > nul
 if errorlevel 1 (
-    echo Cannot Connect Server DCA4.SCASA4.COM, retrying...
+    echo Cannot connect to server DC01.lab.com, retrying...
     timeout /t 1 > nul
     goto loop
 ) else (
-    echo  Server Connected successfully!
-    REM Go to A: drive
-    goto A:
+    echo Server connected successfully!
+    goto run_script
 )
 
-:A
-
-
-powershell -Command "Start-Process PowerShell -ArgumentList '-ExecutionPolicy Bypass -NoExit -File ""%~dp0DjoinClass.ps1""' -Verb RunAs"
-
-
-
-timeout /t 1 && exit
-
-
+:run_script
+set "script=%~dp0DjoinClass.ps1"
+powershell -Command "Start-Process PowerShell -Verb RunAs -ArgumentList '-ExecutionPolicy Bypass -NoExit -File \"%script%\"'"
+timeout /t 1 > nul
+exit
