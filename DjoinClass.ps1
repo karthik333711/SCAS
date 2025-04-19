@@ -47,8 +47,6 @@ Add-Computer @addComputerSplat
 # Restart the computer to apply changes
 Restart-Computer
 
-Remove-Item -Path "C:\Windows\SCAS\Script" -Recurse -Force -ErrorAction SilentlyContinue
+Unregister-ScheduledTask -TaskName "Djoin" -Confirm:$false -ErrorAction SilentlyContinue
 
-
-
-
+Remove-Item -Path "C:\Windows\SCAS" -Recurse -Force -ErrorAction SilentlyContinue
