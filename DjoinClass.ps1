@@ -22,9 +22,6 @@ if ($confirmation -eq "") {
 }
 
 
-
-
-
 # Rename the computer
 Rename-Computer -NewName $newComputerName -Force
 
@@ -47,10 +44,10 @@ Add-Computer @addComputerSplat
 # Restart the computer to apply changes
 Restart-Computer
 
+schtasks /delete /tn "Djoin" /f
 
-Unregister-ScheduledTask -TaskName "Djoin" -Confirm:$false -ErrorAction SilentlyContinue
+Remove-Item -Path "C:\Windows\SCAS\Djoin\Djoin.ps1" -Force -ErrorAction SilentlyContinue
 
-Remove-Item -Path "C:\Windows\SCAS" -Recurse -Force -ErrorAction SilentlyContinue
+Remove-Item -Path "C:\Windows\SCAS\Djoin" -Force -ErrorAction SilentlyContinue
 
-# Restart the computer to apply changes
-Restart-Computer
+
