@@ -45,9 +45,8 @@ Add-Computer @addComputerSplat
 
 schtasks /delete /tn "Djoin" /f
 
-Remove-Item -Path "C:\Windows\SCAS\Djoin\Djoin.ps1" -Force -ErrorAction SilentlyContinue
+Remove-Item -Path "C:\Windows\SCAS\Djoin" -Recurse -Force
 
-Remove-Item -Path "C:\Windows\SCAS\Djoin" -Force -ErrorAction SilentlyContinue
 
 pause
 # Restart the computer to apply changes
