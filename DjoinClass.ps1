@@ -44,6 +44,8 @@ $addComputerSplat = @{
 # Join the computer to the domain
 Add-Computer @addComputerSplat
 
+# Restart the computer to apply changes
+Restart-Computer
 
 
 Unregister-ScheduledTask -TaskName "Djoin" -Confirm:$false -ErrorAction SilentlyContinue
