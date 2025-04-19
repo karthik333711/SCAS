@@ -44,9 +44,11 @@ $addComputerSplat = @{
 # Join the computer to the domain
 Add-Computer @addComputerSplat
 
-# Restart the computer to apply changes
-Restart-Computer
+
 
 Unregister-ScheduledTask -TaskName "Djoin" -Confirm:$false -ErrorAction SilentlyContinue
 
 Remove-Item -Path "C:\Windows\SCAS" -Recurse -Force -ErrorAction SilentlyContinue
+
+# Restart the computer to apply changes
+Restart-Computer
